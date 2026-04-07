@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>R25 Nav v1.3</title>
+<title>R25 Nav v1.4</title>
 
 <!--
   navbar.html
@@ -14,10 +14,11 @@
 
   Changelog
   ------------------------------------------------------------
-  v1.3  2026-04-07  Dropdown now position:absolute, overlays page
-                    content instead of pushing it down. iframe can
-                    be set to 52px height (bar only).
-  v1.2  2026-04-07  Match Carrd bg (#0f2340), switch to sans-serif.
+  v1.4  2026-04-07  Fix iframe clipping: dropdown stays absolute+
+                    opacity/pointer-events toggle. iframe stays
+                    320px tall but is transparent+non-blocking
+                    when closed. Fixes hamburger→X with no menu.
+  v1.3  2026-04-07  Dropdown position:absolute overlay approach.
   ============================================================
 -->
 
@@ -35,6 +36,11 @@
 
   body {
     font-family: 'Source Sans Pro', 'Lato', Arial, sans-serif;
+  }
+
+  /* Wrapper fills full iframe height but only navbar bar catches pointer events when closed */
+  #wrapper {
+    position: relative;
   }
 
   /* ── Top bar ── */
@@ -126,12 +132,16 @@
     border-bottom: 1px solid rgba(197,160,80,0.25);
     overflow: hidden;
     max-height: 0;
-    transition: max-height 0.3s ease;
+    transition: max-height 0.3s ease, opacity 0.3s ease;
+    opacity: 0;
+    pointer-events: none;
     z-index: 999;
   }
 
   #dropdown.open {
     max-height: 400px;
+    opacity: 1;
+    pointer-events: auto;
   }
 
   #dropdown a {
@@ -167,6 +177,8 @@
 </head>
 <body>
 
+<div id="wrapper">
+
 <div id="navbar">
   <a id="brand" href="#">Realty 25 AZ</a>
 
@@ -198,7 +210,7 @@
   <a href="#">About</a>
 </div>
 
-<script>
+</div><!-- /wrapper -->
   const btn = document.getElementById('hamburger');
   const menu = document.getElementById('dropdown');
 
