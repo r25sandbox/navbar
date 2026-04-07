@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>R25 Nav v1.1</title>
+<title>R25 Nav v1.3</title>
 
 <!--
   navbar.html
@@ -14,9 +14,10 @@
 
   Changelog
   ------------------------------------------------------------
-  v1.1  2026-04-06  Move About to last position in both desktop
-                    and mobile nav.
-  v1.0  2026-04-06  Initial build.
+  v1.3  2026-04-07  Dropdown now position:absolute, overlays page
+                    content instead of pushing it down. iframe can
+                    be set to 52px height (bar only).
+  v1.2  2026-04-07  Match Carrd bg (#0f2340), switch to sans-serif.
   ============================================================
 -->
 
@@ -27,15 +28,18 @@
     box-sizing: border-box;
   }
 
-  body {
+  html, body {
     background: transparent;
-    font-family: Georgia, 'Times New Roman', serif;
-    overflow: hidden; /* prevent iframe scrollbars */
+    overflow: visible;
+  }
+
+  body {
+    font-family: 'Source Sans Pro', 'Lato', Arial, sans-serif;
   }
 
   /* ── Top bar ── */
   #navbar {
-    background: #0d1b2a;
+    background: #0f2340;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -114,15 +118,20 @@
 
   /* ── Dropdown panel ── */
   #dropdown {
-    background: #0d1b2a;
+    position: absolute;
+    top: 52px;
+    left: 0;
+    right: 0;
+    background: #0f2340;
     border-bottom: 1px solid rgba(197,160,80,0.25);
     overflow: hidden;
     max-height: 0;
     transition: max-height 0.3s ease;
+    z-index: 999;
   }
 
   #dropdown.open {
-    max-height: 400px; /* large enough for any reasonable link count */
+    max-height: 400px;
   }
 
   #dropdown a {
