@@ -1,0 +1,116 @@
+<!--
+  carrd-nav-prod.html
+  ============================================================
+  Version : 1.1
+  Date    : 2026-04-07
+  Author  : Alik Levin / Realty 25 AZ
+
+  PRODUCTION version — Comps excluded (not yet gated).
+  Sandbox version retains Comps link.
+
+  Changelog
+  ------------------------------------------------------------
+  v1.1  2026-04-11  Add phone 480.920.2273 below brand as
+                    tappable tel: link, smaller gold text.
+  v1.0  2026-04-07  Prod nav. Ported from carrd-nav v1.9.
+                    Comps removed. All other fixes included:
+                    exact bg #0C1628, Open Sans brand, no
+                    underlines, Clients link, collapse on
+                    brand click, addEventListener handler.
+  ============================================================
+-->
+
+<div id="r25nav" style="position:relative;width:100%;font-family:'Source Sans Pro','Lato',Arial,sans-serif;z-index:9999;">
+
+  <div style="background:#0C1628;display:flex;align-items:center;justify-content:space-between;padding:0 20px;height:52px;border-bottom:1px solid rgba(197,160,80,0.25);">
+
+    <div style="display:flex;flex-direction:column;gap:1px;">
+      <a id="r25brand" href="#home" style="color:#E8C96A;font-family:'Open Sans',sans-serif;font-size:1.25em;font-weight:600;letter-spacing:0.06em;text-decoration:none;white-space:nowrap;line-height:1.2;">Realty 25 AZ</a>
+      <a href="tel:4809202273" style="color:#c5a050;font-family:'Open Sans',sans-serif;font-size:0.7em;font-weight:400;text-decoration:none;white-space:nowrap;letter-spacing:0.04em;line-height:1.2;">480.920.2273</a>
+    </div>
+
+    <nav id="r25desktop" style="display:none;gap:28px;align-items:center;">
+      <a href="#pricing"  style="color:#c5a050;text-decoration:none;font-size:15px;letter-spacing:0.03em;white-space:nowrap;">Pricing</a>
+      <a href="#reviews"  style="color:#c5a050;text-decoration:none;font-size:15px;letter-spacing:0.03em;white-space:nowrap;">Reviews</a>
+      <a href="#calc"     style="color:#c5a050;text-decoration:none;font-size:15px;letter-spacing:0.03em;white-space:nowrap;">Calc</a>
+      <a href="https://prcllc.atlassian.net/servicedesk/customer/user/requests?page=1" style="color:#c5a050;text-decoration:none;font-size:15px;letter-spacing:0.03em;white-space:nowrap;">Clients</a>
+      <a href="#about"    style="color:#c5a050;text-decoration:none;font-size:15px;letter-spacing:0.03em;white-space:nowrap;">About</a>
+    </nav>
+
+    <button id="r25btn" aria-label="Open menu" aria-expanded="false"
+      style="display:flex;flex-direction:column;justify-content:center;align-items:center;gap:5px;width:36px;height:36px;background:none;border:1px solid rgba(197,160,80,0.4);border-radius:4px;cursor:pointer;padding:0;flex-shrink:0;">
+      <span id="r25l1" style="display:block;width:18px;height:2px;background:#c5a050;border-radius:2px;transition:transform 0.25s ease,opacity 0.2s ease;transform-origin:center;"></span>
+      <span id="r25l2" style="display:block;width:18px;height:2px;background:#c5a050;border-radius:2px;transition:opacity 0.2s ease;"></span>
+      <span id="r25l3" style="display:block;width:18px;height:2px;background:#c5a050;border-radius:2px;transition:transform 0.25s ease;transform-origin:center;"></span>
+    </button>
+
+  </div>
+
+  <div id="r25menu" style="position:absolute;top:52px;left:0;right:0;background:#0C1628;border-bottom:1px solid rgba(197,160,80,0.25);overflow:hidden;max-height:0;opacity:0;pointer-events:none;transition:max-height 0.3s ease,opacity 0.25s ease;z-index:9999;">
+    <a href="#pricing"  style="display:block;color:#c5a050;text-decoration:none;font-size:16px;letter-spacing:0.04em;padding:13px 24px;border-bottom:1px solid rgba(197,160,80,0.1);">Pricing</a>
+    <a href="#reviews"  style="display:block;color:#c5a050;text-decoration:none;font-size:16px;letter-spacing:0.04em;padding:13px 24px;border-bottom:1px solid rgba(197,160,80,0.1);">Reviews</a>
+    <a href="#calc"     style="display:block;color:#c5a050;text-decoration:none;font-size:16px;letter-spacing:0.04em;padding:13px 24px;border-bottom:1px solid rgba(197,160,80,0.1);">Calc</a>
+    <a href="https://prcllc.atlassian.net/servicedesk/customer/user/requests?page=1" style="display:block;color:#c5a050;text-decoration:none;font-size:16px;letter-spacing:0.04em;padding:13px 24px;border-bottom:1px solid rgba(197,160,80,0.1);">Clients</a>
+    <a href="#about"    style="display:block;color:#c5a050;text-decoration:none;font-size:16px;letter-spacing:0.04em;padding:13px 24px;">About</a>
+  </div>
+
+</div>
+
+<script>
+(function() {
+  var nav     = document.getElementById('r25nav');
+  var btn     = document.getElementById('r25btn');
+  var menu    = document.getElementById('r25menu');
+  var desktop = document.getElementById('r25desktop');
+  var brand   = document.getElementById('r25brand');
+  var l1      = document.getElementById('r25l1');
+  var l2      = document.getElementById('r25l2');
+  var l3      = document.getElementById('r25l3');
+  var open    = false;
+
+  function checkWidth() {
+    var w = (nav && nav.offsetWidth) ? nav.offsetWidth : window.innerWidth;
+    if (w <= 650) {
+      btn.style.display = 'flex';
+      desktop.style.display = 'none';
+    } else {
+      btn.style.display = 'none';
+      desktop.style.display = 'flex';
+      if (open) collapse();
+    }
+  }
+
+  function expand() {
+    open = true;
+    menu.style.maxHeight = '400px';
+    menu.style.opacity = '1';
+    menu.style.pointerEvents = 'auto';
+    btn.setAttribute('aria-expanded', 'true');
+    l1.style.transform = 'translateY(7px) rotate(45deg)';
+    l2.style.opacity = '0';
+    l3.style.transform = 'translateY(-7px) rotate(-45deg)';
+  }
+
+  function collapse() {
+    open = false;
+    menu.style.maxHeight = '0';
+    menu.style.opacity = '0';
+    menu.style.pointerEvents = 'none';
+    btn.setAttribute('aria-expanded', 'false');
+    l1.style.transform = '';
+    l2.style.opacity = '1';
+    l3.style.transform = '';
+  }
+
+  btn.addEventListener('click', function() { open ? collapse() : expand(); });
+
+  menu.querySelectorAll('a').forEach(function(a) {
+    a.addEventListener('click', collapse);
+  });
+
+  if (brand) brand.addEventListener('click', collapse);
+
+  checkWidth();
+  window.addEventListener('resize', checkWidth);
+})();
+</script>
