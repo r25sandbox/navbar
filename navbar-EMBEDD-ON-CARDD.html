@@ -1,22 +1,26 @@
 <!--
-  carrd-nav-prod.html
+  carrd-nav.html
   ============================================================
-  Version : 1.1
+  Version : 2.0
   Date    : 2026-04-07
   Author  : Alik Levin / Realty 25 AZ
 
-  PRODUCTION version — Comps excluded (not yet gated).
-  Sandbox version retains Comps link.
-
   Changelog
   ------------------------------------------------------------
-  v1.1  2026-04-11  Add phone 480.920.2273 below brand as
+  v2.0  2026-04-11  Add phone 480.920.2273 below brand as
                     tappable tel: link, smaller gold text.
-  v1.0  2026-04-07  Prod nav. Ported from carrd-nav v1.9.
-                    Comps removed. All other fixes included:
-                    exact bg #0C1628, Open Sans brand, no
-                    underlines, Clients link, collapse on
-                    brand click, addEventListener handler.
+  v1.9  2026-04-07  Brand matched to Carrd Site Title:
+                    Open Sans, 1.25em, weight 600, #E8C96A.
+  v1.8  2026-04-07  Full clean rewrite — sed corrupted script
+                    in v1.7. All functionality restored.
+  v1.7  2026-04-07  Fix brand click breaking hamburger.
+  v1.6  2026-04-07  Collapse menu on brand (Home) click.
+  v1.5  2026-04-07  Fix brand link underline+bold.
+  v1.4  2026-04-07  Remove underlines, bold brand.
+  v1.3  2026-04-07  Add Clients link before About.
+  v1.2  2026-04-07  Exact bg #0C1628, brand=Home, fix click handler.
+  v1.1  2026-04-07  Hamburger default visible, JS width check.
+  v1.0  2026-04-07  Initial Carrd-native build.
   ============================================================
 -->
 
@@ -33,6 +37,7 @@
       <a href="#pricing"  style="color:#c5a050;text-decoration:none;font-size:15px;letter-spacing:0.03em;white-space:nowrap;">Pricing</a>
       <a href="#reviews"  style="color:#c5a050;text-decoration:none;font-size:15px;letter-spacing:0.03em;white-space:nowrap;">Reviews</a>
       <a href="#calc"     style="color:#c5a050;text-decoration:none;font-size:15px;letter-spacing:0.03em;white-space:nowrap;">Calc</a>
+      <a href="#comps"    style="color:#c5a050;text-decoration:none;font-size:15px;letter-spacing:0.03em;white-space:nowrap;">Comps</a>
       <a href="https://prcllc.atlassian.net/servicedesk/customer/user/requests?page=1" style="color:#c5a050;text-decoration:none;font-size:15px;letter-spacing:0.03em;white-space:nowrap;">Clients</a>
       <a href="#about"    style="color:#c5a050;text-decoration:none;font-size:15px;letter-spacing:0.03em;white-space:nowrap;">About</a>
     </nav>
@@ -50,6 +55,7 @@
     <a href="#pricing"  style="display:block;color:#c5a050;text-decoration:none;font-size:16px;letter-spacing:0.04em;padding:13px 24px;border-bottom:1px solid rgba(197,160,80,0.1);">Pricing</a>
     <a href="#reviews"  style="display:block;color:#c5a050;text-decoration:none;font-size:16px;letter-spacing:0.04em;padding:13px 24px;border-bottom:1px solid rgba(197,160,80,0.1);">Reviews</a>
     <a href="#calc"     style="display:block;color:#c5a050;text-decoration:none;font-size:16px;letter-spacing:0.04em;padding:13px 24px;border-bottom:1px solid rgba(197,160,80,0.1);">Calc</a>
+    <a href="#comps"    style="display:block;color:#c5a050;text-decoration:none;font-size:16px;letter-spacing:0.04em;padding:13px 24px;border-bottom:1px solid rgba(197,160,80,0.1);">Comps</a>
     <a href="https://prcllc.atlassian.net/servicedesk/customer/user/requests?page=1" style="display:block;color:#c5a050;text-decoration:none;font-size:16px;letter-spacing:0.04em;padding:13px 24px;border-bottom:1px solid rgba(197,160,80,0.1);">Clients</a>
     <a href="#about"    style="display:block;color:#c5a050;text-decoration:none;font-size:16px;letter-spacing:0.04em;padding:13px 24px;">About</a>
   </div>
